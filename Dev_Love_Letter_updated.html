@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Suniye na, aapke liye kuch hai…</title>
+<style>
+:root {
+  --site-primary: #8b6652;
+  --site-on-primary: #ffffff;
+  --site-secondary: #eadbc9;
+  --site-on-secondary: #4d382d;
+  --site-background: #f7f0e7;
+  --site-on-background: #49382f;
+  --site-font-body: Georgia, "Times New Roman", serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--site-font-body);
+  color: var(--site-on-background);
+  background: light-dark(#f7f0e7, #241f1b);
+}
+#app {
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 0;
+  background-color: light-dark(var(--site-background), #241f1b);
+  color: light-dark(var(--site-on-background), #f2e8dd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(24px * var(--site-spacing-scale));
+  position: relative;
+  overflow: hidden;
+}
+.decor { position: absolute; pointer-events: none; opacity: calc(.42 * var(--site-decoration-opacity)); color: #b99b80; }
+.decor.one { top: 8%; left: 8%; font-size: 28px; transform: rotate(-14deg); }
+.decor.two { right: 9%; bottom: 10%; font-size: 24px; transform: rotate(12deg); }
+.shell { width: min(100%, 620px); position: relative; z-index: 1; }
+.eyebrow { text-transform: uppercase; letter-spacing: .19em; font: 11px/1.5 Arial, sans-serif; color: #9b7b64; margin-bottom: 18px; }
+.card { background: light-dark(#fcf8f2, #302923); border: 1px solid light-dark(#e5d5c5, #544438); border-radius: calc(10px * var(--site-radius-scale)); padding: clamp(28px, 7vw, 54px); box-shadow: 0 14px 36px rgba(73, 56, 47, .07); text-align: center; }
+.small-heart { color: #a9786a; font-size: 22px; margin-bottom: 15px; }
+h1, h2 { font-family: var(--site-font-heading); font-weight: normal; }
+h1 { font-size: clamp(30px, 6vw, 43px); line-height: 1.22; margin: 0 0 15px; letter-spacing: -.025em; }
+.subtitle { font-size: 16px; line-height: 1.85; max-width: 390px; margin: 0 auto 28px; color: light-dark(#776255, #d0bbaa); }
+button, .primary-btn { border: 0; cursor: pointer; font: 14px Arial, sans-serif; letter-spacing: .02em; transition: transform .18s ease, background .18s ease; display: inline-block; text-decoration: none; }
+button:focus-visible { outline: 3px solid #bd987d; outline-offset: 4px; }
+.primary-btn { background: var(--site-primary); color: var(--site-on-primary); padding: 15px 23px; border-radius: 4px; }
+.primary-btn:hover, .primary-btn:focus-visible { background: #765340; transform: translateY(-1px); }
+.note { margin-top: 22px; font: 11px/1.5 Arial, sans-serif; letter-spacing: .04em; color: #a58a75; }
+#letter { display: none; text-align: left; animation: appear .5s ease both; }
+#show-letter:checked ~ .shell #intro { display: none; }
+#show-letter:checked ~ .shell #letter { display: block; }
+#show-letter { position: absolute; opacity: 0; pointer-events: none; }
+.letter-top { text-align: center; margin-bottom: 27px; }
+.letter-top .eyebrow { margin-bottom: 10px; }
+.letter-top h2 { font-size: clamp(27px, 5vw, 35px); margin: 0; line-height: 1.3; }
+.letter-body { font-size: 16px; line-height: 1.95; color: light-dark(#5d493c, #ead9c8); }
+.letter-body p { margin: 0 0 17px; }
+.signoff { margin-top: 26px; font-size: 17px; line-height: 1.8; }
+.signoff strong { font-weight: normal; font-style: italic; color: light-dark(#8b6652, #d3ae91); }
+.footer-line { width: 46px; height: 1px; background: #c8ad96; margin: 26px auto 0; }
+.back-btn { display: block; margin: 25px auto 0; padding: 10px 14px; background: transparent; color: light-dark(#8b6652, #d3ae91); border-bottom: 1px solid #c8ad96; }
+@keyframes appear { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 420px) { #app { padding: 16px; } .card { padding: 28px 22px; } .letter-body { font-size: 15px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<main id="app" data-sites-preview-theme="custom">
+  <input type="checkbox" id="show-letter" aria-label="Letter kholen">
+  <input type="checkbox" id="show-surprise" class="surprise-toggle" aria-label="Chhupa hua message kholen">
+  <span class="decor one" aria-hidden="true">♡</span>
+  <span class="decor two" aria-hidden="true">✿</span>
+  <div class="shell">
+    <section class="card" id="intro" aria-labelledby="welcome-title">
+      <div class="small-heart" aria-hidden="true">♡</div>
+      <div class="eyebrow">Bas aapke liye</div>
+      <h1 id="welcome-title">Suniye na,<br>aapke liye kuch hai…</h1>
+      <p class="subtitle">Koi badi si baat nahi hai… bas dil mein jo hai, woh aapse kehna tha. 🤎</p>
+      <label class="primary-btn" for="show-letter" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('show-letter').checked=true;}">Achha, ab kholiye ♡</label>
+      <div class="note">Aaram se padhiyega, jaldi nahi hai.</div>
+    </section>
+
+    <section class="card" id="letter" aria-labelledby="letter-title" aria-live="polite">
+      <div class="letter-top">
+        <div class="eyebrow">Dil se, sirf aapke liye</div>
+        <h2 id="letter-title">Mere Patidev, ❤️</h2>
+      </div>
+      <div class="letter-body">
+        <p>Suniye na babu, pata hai mujhe hamesha samajh nahi aata ki aapse apni feelings kaise kahun. Isliye socha, aaj thoda sa likh kar hi keh deti hoon.</p>
+        <p>Aap meri life mein mere liye bahut special ho. Hum door hain, hamari baat kabhi-kabhi kam hoti hai, aur phir chhoti-chhoti baaton par ladai bhi ho jaati hai. Kabhi main zyada soch leti hoon, kabhi apni baat theek se keh nahi paati. Lekin in sabke beech ek baat nahi badalti — aap mere liye bahut maayne rakhte ho.</p>
+        <p>Mujhe aapse sirf baat karna hi nahi, aapke saath apni chhoti-chhoti khushiyan share karna, aapko apne din ke baare mein batana aur aapki baatein sunna bhi pasand hai. Kabhi-kabhi bas aapka thoda sa time chahiye hota hai, kyunki aapki kami mehsoos hoti hai. Shayad isi wajah se kabhi meri shikayatein bhi zyada ho jaati hain.</p>
+        <p>Main nahi chahti ki hum har baat par perfect hon. Bas itna chahti hoon ki jab kuch bura lage toh hum ek-doosre ko samajhne ki koshish karein, gusse mein bhi ek-doosre ki feelings ka khayal rakhein, aur baat ko suljhane ke liye phir se ek-doosre ki taraf aayein.</p>
+        <p>Aap mere liye sirf pyaar nahi, ek aise insaan ho jinke saath main aur achhe se samajhna, seekhna aur aage badhna chahti hoon. Dooriyan hain, busy days hain, kabhi misunderstandings bhi hoti hain — par main chahti hoon ki hum dono milkar is rishte ko pyaar aur patience se sambhalein.</p>
+        <p>Aur haan, itni saari serious baaton ke baad bas ek chhoti si baat: aap mujhe bahut pyaare ho, babu. Kabhi main keh nahi paati, kabhi gussa kar leti hoon, par mere dil mein aapke liye jo pyaar hai, woh sachcha hai. 🤎</p>
+      </div>
+      <div class="signoff">Apna khayal rakhiye ga.<br><strong>Aapki taraf se dher saara pyaar ♡</strong></div>
+      <div class="footer-line"></div>
+      <label class="back-btn" for="show-letter" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('show-letter').checked=false;}">Ek baar phir se dekhein</label>
+    </section>
+
+    <section class="card extra-card" aria-labelledby="meaning-title">
+      <div class="small-heart" aria-hidden="true">♡</div>
+      <div class="eyebrow">Ek chhoti si baat</div>
+      <h2 class="extra-title" id="meaning-title">Aap mere liye kya hain?</h2>
+      <p class="extra-copy">Aap woh insaan hain jinke saath main apni chhoti-chhoti khushiyan baantna chahti hoon. Jinki awaaz se din thoda achha lagta hai, aur jinki kami kabhi-kabhi bina kahe bhi mehsoos hoti hai. Aap mere liye bahut khaas hain, Patidev. 🤎</p>
+    </section>
+
+    <section class="card extra-card" aria-labelledby="photo-title">
+      <div class="eyebrow">Ek apni si yaad</div>
+      <h2 class="extra-title" id="photo-title">Hamari ek tasveer ♡</h2>
+      <div class="photo-frame">
+        <p>Yahan aap apni photo laga sakti hain 🤎<br><span style="font-size:12px;">Abhi photo file is website ke saath nahi mili hai.</span></p>
+      </div>
+      <p class="extra-copy">Tasveer chhoti ho ya badi, mere liye usse judi yaad hi sabse pyaari hai.</p>
+    </section>
+
+    <section class="card extra-card" aria-labelledby="surprise-title">
+      <div class="small-heart" aria-hidden="true">♡</div>
+      <div class="eyebrow">Sirf aapke liye</div>
+      <h2 class="extra-title" id="surprise-title">Ek baat aur hai…</h2>
+      <p class="extra-copy">Agar aapne abhi tak poora nahi padha, toh pehle aaram se padh lijiye. Phir neeche dabaiyega.</p>
+      <label class="primary-btn" for="show-surprise" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('show-surprise').checked=!document.getElementById('show-surprise').checked;}">Chhupa hua message kholiye ♡</label>
+      <div class="surprise-message" id="surprise-message">Patidev, door rehkar bhi aap mere din ka ek pyaara hissa hain. Main chahti hoon ki hum ladai se zyada ek-doosre ko samajhne ki koshish karein. Aur jab bhi din mushkil ho, yaad rakhiye—koi hai jo aapki khushi ki dil se parwah karta hai. Apna khayal rakhiye ga. 🤎</div>
+      <div class="song-note"><strong style="font-weight:normal;">🎵 Gaane ka chhota sa idea</strong><br>Is page ko padhte waqt aap dono ka pasandida romantic gaana chala sakti hain. Website mein gaana automatically nahi bajega.</div>
+    </section>
+  </div>
+</main>
+<!-- CSS-only interactions so the letter and surprise also work in simple file viewers. -->
+</body>
+</html>
